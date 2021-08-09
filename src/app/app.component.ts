@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder } from '@angular/forms';
 
+import data from '../../bb-ui/mock-data/transactions.json';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,14 +14,16 @@ export class AppComponent {
   title = 'backbase-app';
 
   transactionForm = this.formBuilder.group({
-    name: "",
+    fromAcc: "",
+    toAcc: "",
     amount: 0,
-    jobTitle: "",
   })
 
-  isControlValid(control: AbstractControl): boolean {
-    return control.invalid && (control.dirty)//|| this.submitClicked)
-  }
+  transactions = [...data.data]
+
+  // isControlValid(control: AbstractControl): boolean {
+  //   return control.invalid && (control.dirty || this.submitClicked)
+  // }
 
   onSubmit() { }
 }

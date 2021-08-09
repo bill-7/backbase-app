@@ -14,9 +14,12 @@ h2, h3 {
 h3 {
   font-size: 1.3rem;
 }
+h5 {
+  font-size: x-small;
+}
 body {
-  padding: .5rem;
-  // max-width: 1000px;
+  // padding: .5rem;
+  max-width: 95vw;
   margin: auto;
 }
 @media (min-width: 600px) {

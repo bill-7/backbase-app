@@ -1,19 +1,41 @@
+
+
 .bg {
   background-image: url(../assets/background.jpg);
   background-position: center;
   background-size: cover;
   // filter: blur(2px);
   margin-left: -10px;
-  margin-right: -10px
+  margin-right: -10px;
+  margin-top: 30px;
   //clip rect
+  max-width: inherit;
+}
+
+.h {
+  height: 99vh;
 }
 
 .big {
-  padding-top: 500px;
+  margin-bottom: 50px;
 }
 
 .transfer {
-  margin: 100px;
+  padding: 10px;
+  margin: 25px;
   background: white;
-  max-width: 400px;
+  width: 250px;
+}
+
+.list {
+  padding: 10px;
+  margin: 25px;
+  
+  background: white;
+  flex-grow: 1;
+}
+
+.container {
+  display: flex;
+  padding-bottom: 400px;
 }

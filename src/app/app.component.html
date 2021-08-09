@@ -1,29 +1,36 @@
-<div class="bg">
-  <app-logo></app-logo>
-  <div class="">
-    <div class="transfer">
-      <h3>Make Transfer</h3>
-      <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
-        <div>
-          <h5 for="From Account">Name</h5>
-          <input id="From Account" type="text" formControlName="fromAccount">
-          <!-- <div *ngIf="isControlValid(feedbackForm.controls.name)" class="invalid">Invalid - must be at least 5 chars with no numbers</div>-->
 
-        </div>
-        <div>
-          <h5 for="companyName">Company name</h5>
-          <input id="companyName" type="text" formControlName="companyName" required />
-          <!-- <div *ngIf="isControlValid(feedbackForm.controls.companyName)" class="invalid">This field is required</div> -->
-        </div>
-        <div>
-          <h5 for="jobTitle">Job title</h5>
-          <input id="jobTitle" type="text" formControlName="jobTitle" required />
-          <!-- <div *ngIf="isControlValid(feedbackForm.controls.jobTitle)" class="invalid">This field is required</div> -->
-        </div>
-        <input type="submit" value="Submit" class="button">
-      </form>
+  <app-logo></app-logo>
+  <div class="bg">
+    <div class="container">
+      <div class="transfer">
+        <h3>Make Transfer</h3>
+        <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+          <div>
+            <h5 for="fromAcc">From Account</h5>
+            <input id="fromAcc" type="text" formControlName="fromAcc">
+            <!-- <div *ngIf="isControlValid(feedbackForm.controls.name)" class="invalid">Invalid - must be at least 5 chars with no numbers</div>-->
+
+          </div>
+          <div>
+            <h5 for="toAcc">To Account</h5>
+            <input id="toAcc" type="text" formControlName="toAcc" required />
+            <!-- <div *ngIf="isControlValid(feedbackForm.controls.companyName)" class="invalid">This field is required</div> -->
+          </div>
+          <div>
+            <h5 for="amount">Amount</h5>
+            <input id="amount" type="text" formControlName="amount" required />
+            <!-- <div *ngIf="isControlValid(feedbackForm.controls.jobTitle)" class="invalid">This field is required</div> -->
+          </div>
+          <input type="submit" value="Submit" class="button">
+        </form>
+      </div>
+      <div class="list">
+        <h3>Transactions List</h3>
+        <ng-container class="big" *ngFor="let t of transactions">
+          <span>{{t.merchant.name}} {{t.transaction.amountCurrency.amount}} {{t.transaction.amountCurrency.currencyCode}}</span>
+          <app-transaction-item ></app-transaction-item>
+        </ng-container>
+      </div>
     </div>
-    <div class="list"></div>
   </div>
   <app-footer></app-footer>
-</div>
