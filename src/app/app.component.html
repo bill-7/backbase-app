@@ -1,9 +1,29 @@
-<div class="mg">
+<div class="bg">
   <app-logo></app-logo>
-  <form>
-    <div class="bg big">
+  <div class="">
+    <div class="transfer">
+      <h3>Make Transfer</h3>
+      <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+        <div>
+          <h5 for="From Account">Name</h5>
+          <input id="From Account" type="text" formControlName="fromAccount">
+          <!-- <div *ngIf="isControlValid(feedbackForm.controls.name)" class="invalid">Invalid - must be at least 5 chars with no numbers</div>-->
 
+        </div>
+        <div>
+          <h5 for="companyName">Company name</h5>
+          <input id="companyName" type="text" formControlName="companyName" required />
+          <!-- <div *ngIf="isControlValid(feedbackForm.controls.companyName)" class="invalid">This field is required</div> -->
+        </div>
+        <div>
+          <h5 for="jobTitle">Job title</h5>
+          <input id="jobTitle" type="text" formControlName="jobTitle" required />
+          <!-- <div *ngIf="isControlValid(feedbackForm.controls.jobTitle)" class="invalid">This field is required</div> -->
+        </div>
+        <input type="submit" value="Submit" class="button">
+      </form>
     </div>
-  </form>
+    <div class="list"></div>
+  </div>
   <app-footer></app-footer>
 </div>

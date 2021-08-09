@@ -2,7 +2,7 @@
   background-image: url(../assets/background.jpg);
   background-position: center;
   background-size: cover;
-  filter: blur(2px);
+  // filter: blur(2px);
   margin-left: -10px;
   margin-right: -10px
   //clip rect
@@ -10,4 +10,10 @@
 
 .big {
   padding-top: 500px;
+}
+
+.transfer {
+  margin: 100px;
+  background: white;
+  max-width: 400px;
 }
