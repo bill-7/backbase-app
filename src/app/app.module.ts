@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BbUIModule } from 'bb-ui/bb-ui.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
     NgbModule,
   ],
   providers: [],
