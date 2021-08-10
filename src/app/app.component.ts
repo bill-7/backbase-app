@@ -16,8 +16,10 @@ export class AppComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
   title = 'backbase-app';
 
+  userBalance = 5824.76
+
   transactionForm = this.formBuilder.group({
-    fromAcc: "",
+    fromAcc: `My Personal Account: € ${this.userBalance}`,
     toAcc: "",
     amount: 0,
   })
@@ -48,8 +50,6 @@ export class AppComponent implements OnInit {
   getData(): Observable<Transaction[]> {
     const corsProxy = 'https://cors-anywhere.herokuapp.com/' //TODO
     const url = 'https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions'
-    return this.http.get<Array<Transaction>>(corsProxy + url).pipe(map((data: Transaction[]) => {
-      return data
-    }))
+    return this.http.get<Array<Transaction>>(corsProxy + url).pipe(map((data: Transaction[]) => data))
   }
 }
