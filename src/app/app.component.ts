@@ -1,10 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Transaction } from './model';
-import { Observable, forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
-import mockTransactions from '../../bb-ui/mock-data/transactions.json';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +7,6 @@ import mockTransactions from '../../bb-ui/mock-data/transactions.json';
 })
 export class AppComponent {
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor() { }
   title = 'backbase-app';
-
-
 }
