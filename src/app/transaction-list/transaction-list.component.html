@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Transactions List</h5>
+    <div *ngFor="let t of transactions">
+      <span>{{t.merchant.name}} {{t.transaction.amountCurrency.amount}}
+        {{t.transaction.amountCurrency.currencyCode}}</span>
+      <app-transaction-item></app-transaction-item>
+    </div>
+  </div>
+</div>
