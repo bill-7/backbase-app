@@ -1,22 +1,24 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Transactions List</h5>
-    <app-filter (onInputChange)="filter($event)"></app-filter>
-    <ul class="list-group" *ngFor="let t of transactions">
-      <li class="list-group-item mb-2">
-        <div class="row align-items-center">
-          <div class="col-2">
-            <span>{{date(t.dates.valueDate)}}</span>
+    <app-filter (inputChange)="filter($event)"></app-filter>
+    <div class="list-container">
+      <ul class="list-group" *ngFor="let t of displayedTransactions">
+        <li class="list-group-item mb-2">
+          <div class="row align-items-center">
+            <div class="col-2">
+              <span>{{dateString(t.dates.valueDate)}}</span>
+            </div>
+            <div class="col">
+              <span class="mb-0">{{t.merchant.name}}</span><br>
+              <span class="transaction-type">{{t.transaction.type}}</span>
+            </div>
+            <div class="col text-right">
+              <span [ngClass]="t.transaction.creditDebitIndicator">{{moneyString(t.transaction)}}</span>
+            </div>
+            <!-- <app-transaction-item></app-transaction-item> -->
           </div>
-          <div class="col">
-            <span class="mb-0">{{t.merchant.name}}</span><br>
-            <span class="transaction-type">{{t.transaction.type}}</span>
-          </div>
-          <div class="col text-right">
-            <span>€ {{t.transaction.amountCurrency.amount}}</span>
-          </div>
-          <!-- <app-transaction-item></app-transaction-item> -->
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
   </div>

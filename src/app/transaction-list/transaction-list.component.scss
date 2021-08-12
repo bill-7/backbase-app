@@ -2,3 +2,20 @@
   font-size: small;
   color: grey;
 }
+
+.list-container {
+  overflow: auto;
+  height: 75vh;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.CRDT {
+  color: green;
+}
+
+.DBIT {
+  color: red;
+}

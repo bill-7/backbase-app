@@ -16,14 +16,24 @@ export class TransactionListComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   transactions: Transaction[] = []
+  displayedTransactions: Transaction[] = []
 
-  filter(event: any) {
-    console.log("list filter", event)
+  filter(search: string) {
+    this.displayedTransactions = this.transactions.filter(t => {
+      return t.merchant.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+    })
   }
 
-  date(d: number | string): string {
+  dateString(d: number | string): string {
     const date = new Date(d).toDateString().split(' ')
     return `${date[1]}. ${date[2]}`
+  }
+
+  moneyString(t: Transaction["transaction"]): string {
+    const polarity = t.creditDebitIndicator === "DBIT" ? "-" : ""
+    const currCode = t.amountCurrency.currencyCode === "EUR" ? "€" : ""
+    const amount = Number(t.amountCurrency.amount).toFixed(2)
+    return `${currCode} ${polarity}${amount}`
   }
 
   ngOnInit() {
@@ -31,10 +41,13 @@ export class TransactionListComponent implements OnInit {
       ts => {
         console.log("success")
         this.transactions = ts
+        this.displayedTransactions = this.transactions
+
       },
       _ => {
         console.log("failed")
         this.transactions = [...mockTransactions.data as Transaction[]]
+        this.displayedTransactions = this.transactions
       }
     )
   }
