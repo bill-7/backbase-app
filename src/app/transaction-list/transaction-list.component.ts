@@ -22,7 +22,6 @@ export class TransactionListComponent implements OnInit {
       ts => {
         console.log("success")
         this.transactions = ts
-
       }, _ => {
         console.log("failed")
         this.transactions = [...mockTransactions.data as Transaction[]]
@@ -32,8 +31,9 @@ export class TransactionListComponent implements OnInit {
     )
   }
 
-  byDate(a: Transaction, b: Transaction) {
-    return new Date(b.dates.valueDate).getTime() - new Date(a.dates.valueDate).getTime()
+  private byDate(a: Transaction, b: Transaction): number {
+    const time = (t: Transaction) => new Date(t.dates.valueDate).getTime()
+    return time(b) - time(a)
   }
 
   private getData(): Observable<Transaction[]> {
