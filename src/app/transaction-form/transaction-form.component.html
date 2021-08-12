@@ -8,24 +8,44 @@
       </div>
       <div class="mb-3">
         <label for="toAcc" class="form-label">To Account</label>
-        <input [ngClass]="{ 'is-invalid': isControlInvalid(t.toAcc) }" id="toAcc" type="text" class="form-control"
-          formControlName="toAcc" placeholder="type an account name">
-        <label class="mt-1 error" *ngIf="isControlInvalid(t.toAcc)">this field is
+        <input id="toAcc" type="text" class="form-control" formControlName="toAcc" placeholder="type an account name"
+          [ngClass]="{ 'is-invalid': isControlInvalid(cs.toAcc) }">
+        <label class="mt-1 error" *ngIf="isControlInvalid(cs.toAcc)">this field is
           required</label>
       </div>
       <label for="amount" class="form-label">Amount</label>
       <div class="mb-3">
         <div class="input-group">
           <span class="input-group-text">€</span>
-          <input [ngClass]="{ 'is-invalid': isControlInvalid(t.amount) }" id="amount" type="number" class="form-control"
-            formControlName="amount" placeholder="specify an amount">
+          <input [ngClass]="{ 'is-invalid': isControlInvalid(cs.amount) }" id="amount" type="number"
+            class="form-control" formControlName="amount" placeholder="specify an amount">
         </div>
-        <div class="mt-1" *ngIf="isControlInvalid(t.amount)">
-          <label class="error" *ngIf="t.amount.errors?.required">this field is required</label>
-          <label class="error" *ngIf="t.amount.errors?.max">there is not enough balance</label>
+        <div class="mt-1" *ngIf="isControlInvalid(cs.amount)">
+          <label class="error" *ngIf="cs.amount.errors?.required">this field is required</label>
+          <label class="error" *ngIf="cs.amount.errors?.max">there is not enough balance</label>
         </div>
       </div>
-      <app-submit-button class="float-right" (submitForm)="onSubmit()"></app-submit-button>
+      <app-submit-button class="float-right" (submitForm)="onSubmit(modal)"></app-submit-button>
     </form>
   </div>
 </div>
+
+<ng-template #modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Review Transfer</h4>
+    <button type="button" class="close" (click)="dismissModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p class="font-italic">Are you ready to send out this transfer?</p>
+    <p class="font-weight-bold">It will be sent to account:</p>
+    <p>{{cs.toAcc.value}}</p>
+    <p class="font-weight-bold">With the amount of:</p>
+    <p>€ {{cs.amount.value}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="dismissModal()">Close</button>
+    <button type="button" class="btn btn-primary" (click)="confirmClicked()">Send Transfer</button>
+  </div>
+</ng-template>
