@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Transaction } from '../model';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import mockTransactions from '../../../bb-ui/mock-data/transactions.json';
 
@@ -17,6 +16,31 @@ export class TransactionListComponent implements OnInit {
 
   transactions: Transaction[] = []
   displayedTransactions: Transaction[] = []
+
+  ngOnInit() {
+    this.getData().subscribe(
+      ts => {
+        console.log("success")
+        this.transactions = ts
+
+      }, _ => {
+        console.log("failed")
+        this.transactions = [...mockTransactions.data as Transaction[]]
+      }, () => {
+        this.displayedTransactions = this.transactions.sort(this.byDate)
+      }
+    )
+  }
+
+  byDate(a: Transaction, b: Transaction) {
+    return new Date(b.dates.valueDate).getTime() - new Date(a.dates.valueDate).getTime()
+  }
+
+  private getData(): Observable<Transaction[]> {
+    const corsProxy = 'https://cors-anywhere.herokuapp.com/' //TODO
+    const url = 'https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions'
+    return this.http.get<Array<Transaction>>(corsProxy + url).pipe(map((data: Transaction[]) => data))
+  }
 
   filter(search: string) {
     this.displayedTransactions = this.transactions.filter(t => {
@@ -35,29 +59,4 @@ export class TransactionListComponent implements OnInit {
     const amount = Number(t.amountCurrency.amount).toFixed(2)
     return `${currCode} ${polarity}${amount}`
   }
-
-  ngOnInit() {
-    this.getData().subscribe(
-      ts => {
-        console.log("success")
-        this.transactions = ts
-        this.displayedTransactions = this.transactions
-
-      },
-      _ => {
-        console.log("failed")
-        this.transactions = [...mockTransactions.data as Transaction[]]
-        this.displayedTransactions = this.transactions
-      }
-    )
-  }
-
-  getData(): Observable<Transaction[]> {
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/' //TODO
-    const url = 'https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions'
-    return this.http.get<Array<Transaction>>(corsProxy + url).pipe(map((data: Transaction[]) => data))
-  }
-
-
-
 }
