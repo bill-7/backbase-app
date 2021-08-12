@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -31,6 +31,7 @@ export class TransactionFormComponent implements OnInit {
   private resetForm() {
     this.transactionForm = this.emptyTransactionForm()
     this.submitClicked = false
+    this.cs = this.transactionForm.controls
   }
 
   private newTransfer(amount: number, account: string) {
@@ -52,8 +53,7 @@ export class TransactionFormComponent implements OnInit {
     this.dismissModal()
   }
 
-  onSubmit(modalRef: any) {
-    console.log(typeof modalRef)
+  onSubmit(modalRef: TemplateRef<any>) {
     this.submitClicked = true
     if (this.transactionForm.valid)
       this.modalService.open(modalRef)

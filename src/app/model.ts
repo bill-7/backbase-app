@@ -2,7 +2,7 @@ export interface Transaction {
   id: string | null,
   categoryCode: string,
   dates: {
-    valueDate: Date | number
+    valueDate: string | number
   },
   transaction: {
     amountCurrency: {

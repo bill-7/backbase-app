@@ -17,6 +17,15 @@ export class TransactionListComponent implements OnInit {
 
   transactions: Transaction[] = []
 
+  filter(event: any) {
+    console.log("list filter", event)
+  }
+
+  date(d: number | string): string {
+    const date = new Date(d).toDateString().split(' ')
+    return `${date[1]}. ${date[2]}`
+  }
+
   ngOnInit() {
     this.getData().subscribe(
       ts => {
