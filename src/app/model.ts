@@ -17,3 +17,8 @@ export interface Transaction {
     accountNumber: string
   }
 }
+
+export interface Transfer {
+  amount: number,
+  account: string
+}

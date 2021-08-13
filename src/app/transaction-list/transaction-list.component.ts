@@ -43,11 +43,11 @@ export class TransactionListComponent implements OnInit, OnChanges {
     )
   }
 
-  filter(search: string) {
+  updateFilter(search: string) {
     this.currentFilter = search.toLocaleLowerCase()
   }
 
-  filtered(merchant: string) {
+  shouldDisplayItem(merchant: string): boolean {
     return merchant.toLocaleLowerCase().includes(this.currentFilter)
   }
 

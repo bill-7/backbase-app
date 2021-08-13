@@ -1,15 +1,11 @@
-body,
-html {
-  height: 100%;
-}
-
-
-.bg {
+.background {
   background-image: url(../assets/background.jpg);
   background-position: center;
   background-size: cover;
   height: 100%;
+}
 
-  // filter: blur(2px);
-  //clip rect
+.unblur {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }

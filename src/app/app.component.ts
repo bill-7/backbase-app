@@ -1,10 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Transaction } from './model';
-
-interface Transfer {
-  amount: number,
-  account: string
-}
+import { Component } from '@angular/core';
+import { Transaction, Transfer } from './model';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +11,6 @@ export class AppComponent {
   constructor() { }
 
   transaction!: Transaction
-
-
 
   recieveTransfer(event: Transfer) {
     this.transaction = {

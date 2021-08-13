@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Transactions List</h5>
-    <app-filter (inputChange)="filter($event)"></app-filter>
+    <app-filter (inputChange)="updateFilter($event)"></app-filter>
     <div class="list-container">
       <p *ngIf="!transactions.length">Loading transactions...</p>
       <ul class="list-group" *ngFor="let t of transactions">
-        <li *ngIf="filtered(t.merchant.name)" class="list-group-item mb-2">
+        <li *ngIf="shouldDisplayItem(t.merchant.name)" class="item list-group-item">
           <div class="row align-items-center">
             <div class="col-2">
               <div class="row align-items-center">
@@ -20,7 +20,6 @@
             <div class="col text-right">
               <span [ngClass]="t.transaction.creditDebitIndicator">{{moneyString(t.transaction)}}</span>
             </div>
-            <!-- <app-transaction-item></app-transaction-item> -->
           </div>
         </li>
       </ul>
