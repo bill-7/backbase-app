@@ -7,6 +7,9 @@
       <ul class="list-group" *ngFor="let t of displayedTransactions">
         <li class="list-group-item mb-2">
           <div class="row align-items-center">
+            <div class="col-1">
+              <p class="indi py-3" [ngStyle]="{'background-color': t.categoryCode}">&nbsp;</p>
+            </div>
             <div class="col-2">
               <span>{{dateString(t.dates.valueDate)}}</span>
             </div>
