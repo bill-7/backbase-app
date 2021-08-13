@@ -14,7 +14,26 @@ export class AppComponent {
   transaction!: Transaction
 
   recieveTransfer(event: any) {
-    this.transaction = event
+    console.log("app", event)
+    this.transaction = {
+      id: "",
+      categoryCode: "#f00",
+      dates: {
+        valueDate: Date.now()
+      },
+      transaction: {
+        amountCurrency: {
+          amount: event.amount,
+          currencyCode: "EUR"
+        },
+        type: "New Transfer",
+        creditDebitIndicator: "DBIT"
+      },
+      merchant: {
+        name: event.account,
+        accountNumber: ""
+      }
+    }
     this.sendTransfer.emit(this.transaction)
   }
 

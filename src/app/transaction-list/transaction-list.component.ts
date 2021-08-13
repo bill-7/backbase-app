@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ɵɵNgOnChangesFeature } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Transaction } from '../model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import mockTransactions from '../../../bb-ui/mock-data/transactions.json';
 
@@ -10,13 +10,23 @@ import mockTransactions from '../../../bb-ui/mock-data/transactions.json';
   templateUrl: './transaction-list.component.html',
   styleUrls: ['./transaction-list.component.scss']
 })
-export class TransactionListComponent implements OnInit {
+export class TransactionListComponent implements OnInit, OnChanges {
   @Input() newTransaction!: Transaction
 
   constructor(private http: HttpClient) { }
 
   transactions: Transaction[] = []
   displayedTransactions: Transaction[] = []
+
+  ngOnChanges() {
+    console.log("changes")
+    if (!!this.newTransaction) {
+      console.log(this.newTransaction)
+      this.transactions.unshift(this.newTransaction)
+      this.filter("")
+      // this.displayedTransactions.push(this.newTransaction)
+    }
+  }
 
   ngOnInit() {
     this.getData().subscribe(ts => {
