@@ -6,7 +6,7 @@ export interface Transaction {
   },
   transaction: {
     amountCurrency: {
-      amount: string,
+      amount: number,
       currencyCode: string
     },
     type: string,

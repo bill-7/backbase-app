@@ -16,22 +16,16 @@ export class TransactionListComponent implements OnInit, OnChanges {
   constructor(private http: HttpClient) { }
 
   transactions: Transaction[] = []
-  displayedTransactions: Transaction[] = []
+  currentFilter: string = ""
 
   ngOnChanges() {
-    console.log("changes")
-    if (!!this.newTransaction) {
-      console.log(this.newTransaction)
+    if (!!this.newTransaction)
       this.transactions.unshift(this.newTransaction)
-      this.filter("")
-      // this.displayedTransactions.push(this.newTransaction)
-    }
   }
 
   ngOnInit() {
     this.getData().subscribe(ts => {
       this.transactions = ts.sort(this.byDate)
-      this.displayedTransactions = this.transactions
     })
   }
 
@@ -50,9 +44,11 @@ export class TransactionListComponent implements OnInit, OnChanges {
   }
 
   filter(search: string) {
-    this.displayedTransactions = this.transactions.filter(t => {
-      return t.merchant.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-    })
+    this.currentFilter = search.toLocaleLowerCase()
+  }
+
+  filtered(merchant: string) {
+    return merchant.toLocaleLowerCase().includes(this.currentFilter)
   }
 
   dateString(d: number | string): string {
