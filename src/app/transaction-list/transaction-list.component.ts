@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Transaction } from '../model';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import mockTransactions from '../../../bb-ui/mock-data/transactions.json';
 
 @Component({
@@ -11,6 +11,7 @@ import mockTransactions from '../../../bb-ui/mock-data/transactions.json';
   styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
+  @Input() newTransaction!: Transaction
 
   constructor(private http: HttpClient) { }
 
@@ -18,17 +19,10 @@ export class TransactionListComponent implements OnInit {
   displayedTransactions: Transaction[] = []
 
   ngOnInit() {
-    this.getData().subscribe(
-      ts => {
-        console.log("success")
-        this.transactions = ts
-      }, _ => {
-        console.log("failed")
-        this.transactions = [...mockTransactions.data as Transaction[]]
-      }, () => {
-        this.displayedTransactions = this.transactions.sort(this.byDate)
-      }
-    )
+    this.getData().subscribe(ts => {
+      this.transactions = ts.sort(this.byDate)
+      this.displayedTransactions = this.transactions
+    })
   }
 
   private byDate(a: Transaction, b: Transaction): number {
@@ -39,7 +33,10 @@ export class TransactionListComponent implements OnInit {
   private getData(): Observable<Transaction[]> {
     const corsProxy = 'https://cors-anywhere.herokuapp.com/' //TODO
     const url = 'https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions'
-    return this.http.get<Array<Transaction>>(corsProxy + url).pipe(map((data: Transaction[]) => data))
+    return this.http.get<Array<Transaction>>(corsProxy + url).pipe(
+      map((data: Transaction[]) => data),
+      catchError(() => of([...mockTransactions.data as Transaction[]]))
+    )
   }
 
   filter(search: string) {

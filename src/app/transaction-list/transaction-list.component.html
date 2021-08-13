@@ -3,6 +3,7 @@
     <h5 class="card-title">Transactions List</h5>
     <app-filter (inputChange)="filter($event)"></app-filter>
     <div class="list-container">
+      <p *ngIf="!transactions.length">Loading transactions...</p>
       <ul class="list-group" *ngFor="let t of displayedTransactions">
         <li class="list-group-item mb-2">
           <div class="row align-items-center">

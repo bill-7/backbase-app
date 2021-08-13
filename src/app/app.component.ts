@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Transaction } from './model';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  @Output() sendTransfer: EventEmitter<any> = new EventEmitter();
   constructor() { }
-  title = 'backbase-app';
+
+  transaction!: Transaction
+
+  recieveTransfer(event: any) {
+    this.transaction = event
+    this.sendTransfer.emit(this.transaction)
+  }
+
+
 }

@@ -10,8 +10,7 @@
         <label for="toAcc" class="form-label">To Account</label>
         <input id="toAcc" type="text" class="form-control" formControlName="toAcc" placeholder="type an account name"
           [ngClass]="{ 'is-invalid': isControlInvalid(cs.toAcc) }">
-        <label class="mt-1 error" *ngIf="isControlInvalid(cs.toAcc)">this field is
-          required</label>
+        <label class="mt-1 error" *ngIf="isControlInvalid(cs.toAcc)">this field is required</label>
       </div>
       <label for="amount" class="form-label">Amount</label>
       <div class="mb-3">
@@ -46,6 +45,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="dismissModal()">Close</button>
-    <button type="button" class="btn btn-primary" (click)="confirmClicked()">Send Transfer</button>
+    <button type="button" class="btn btn-primary" (click)="onConfirm()">Send Transfer</button>
   </div>
 </ng-template>
