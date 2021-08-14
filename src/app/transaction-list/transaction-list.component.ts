@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges, OnInit, ɵɵNgOnChangesFeature } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Transaction } from '../model';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import mockTransactions from '../../../bb-ui/mock-data/transactions.json';
 
@@ -35,7 +35,7 @@ export class TransactionListComponent implements OnInit, OnChanges {
   }
 
   private getData(): Observable<Transaction[]> {
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/' //TODO
+    const corsProxy = 'https://cors.bridged.cc/' //TODO
     const url = 'https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions'
     return this.http.get<Array<Transaction>>(corsProxy + url).pipe(
       map((data: Transaction[]) => data),

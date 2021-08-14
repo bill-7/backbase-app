@@ -1,3 +1,5 @@
+@import '../../bb-ui/styles/vars';
+
 .background {
   background-image: url(../assets/background.jpg);
   background-position: center;
@@ -8,4 +10,13 @@
 .unblur {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+}
+
+.blue-header {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  h2 {
+    color: white;
+  }
+  background-color: $primary-blue;  
 }

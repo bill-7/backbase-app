@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Make Transfer</h5>
+    <!-- <h5 class="card-title">Make Transfer</h5> -->
     <form [formGroup]="transactionForm">
       <div class="mb-3">
         <label for="fromAcc" class="form-label">From Account</label>
@@ -22,6 +22,7 @@
         <div class="mt-1" *ngIf="isControlInvalid(cs.amount)">
           <label class="error" *ngIf="cs.amount.errors?.required">this field is required</label>
           <label class="error" *ngIf="cs.amount.errors?.max">there is not enough balance</label>
+          <label class="error" *ngIf="cs.amount.errors?.min">negative values are invalid</label>
         </div>
       </div>
       <app-submit-button class="float-right" (submitForm)="onSubmit(modal)"></app-submit-button>
@@ -41,7 +42,7 @@
     <p class="font-weight-bold">It will be sent to account:</p>
     <p>{{cs.toAcc.value}}</p>
     <p class="font-weight-bold">With the amount of:</p>
-    <p>€ {{cs.amount.value}}</p>
+    <p>€ {{decimalString(cs.amount)}}</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="dismissModal()">Close</button>

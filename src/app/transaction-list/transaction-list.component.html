@@ -1,9 +1,8 @@
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title">Transactions List</h5>
     <app-filter (inputChange)="updateFilter($event)"></app-filter>
     <div class="list-container">
-      <p *ngIf="!transactions.length">Loading transactions...</p>
+      <p class="d-flex pt-5 justify-content-center" *ngIf="!transactions.length">Loading transactions...</p>
       <ul class="list-group" *ngFor="let t of transactions">
         <li *ngIf="shouldDisplayItem(t.merchant.name)" class="item list-group-item">
           <div class="row align-items-center">

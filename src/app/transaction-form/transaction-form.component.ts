@@ -13,16 +13,16 @@ export class TransactionFormComponent {
 
   @Output() newTransfer: EventEmitter<any> = new EventEmitter();
 
-  userBalance = 5824.76
+  userBalance: number = 5824.76
   submitClicked: boolean = false
   transactionForm: FormGroup = this.emptyTransactionForm()
   cs = this.transactionForm.controls //TODO remove shorthand
 
   private emptyTransactionForm() {
     return this.formBuilder.group({
-      fromAcc: `My Personal Account: € ${this.userBalance}`,
+      fromAcc: `My Personal Account: € ${this.userBalance.toFixed(2)}`,
       toAcc: new FormControl('', Validators.required),
-      amount: new FormControl('', [Validators.required, Validators.max(this.userBalance + 500), Validators.min(0)]),
+      amount: new FormControl(null, [Validators.required, Validators.max(this.userBalance + 500), Validators.min(0)]),
     })
   }
 
@@ -30,10 +30,6 @@ export class TransactionFormComponent {
     this.transactionForm = this.emptyTransactionForm()
     this.submitClicked = false
     this.cs = this.transactionForm.controls
-  }
-
-  isControlInvalid(control: AbstractControl): boolean {
-    return control.invalid && (control.dirty || this.submitClicked)
   }
 
   dismissModal() {
@@ -51,5 +47,13 @@ export class TransactionFormComponent {
     this.newTransfer.emit({ 'amount': this.cs.amount.value, 'account': this.cs.toAcc.value })
     this.resetForm()
     this.dismissModal()
+  }
+
+  isControlInvalid(control: AbstractControl): boolean {
+    return control.invalid && (control.dirty || this.submitClicked)
+  }
+
+  decimalString(control: AbstractControl): string {
+    return control.value ? Number(control.value).toFixed(2) : ''
   }
 }
