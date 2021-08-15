@@ -4,7 +4,6 @@
   background-image: url(../assets/background.jpg);
   background-position: center;
   background-size: cover;
-  height: 100%;
 }
 
 .unblur {
@@ -13,10 +12,15 @@
 }
 
 .blue-header {
+  background-color: $primary-blue;  
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  h2 {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  h4, .lni {
     color: white;
   }
-  background-color: $primary-blue;  
+  i {
+    font-size: 20px
+  }
 }

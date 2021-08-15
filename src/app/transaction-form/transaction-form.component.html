@@ -1,6 +1,5 @@
-<div class="card">
+<div class="card top-flat">
   <div class="card-body">
-    <!-- <h5 class="card-title">Make Transfer</h5> -->
     <form [formGroup]="transactionForm">
       <div class="mb-3">
         <label for="fromAcc" class="form-label">From Account</label>
@@ -15,7 +14,9 @@
       <label for="amount" class="form-label">Amount</label>
       <div class="mb-3">
         <div class="input-group">
-          <span class="input-group-text">€</span>
+          <div class="input-group-prepend">
+            <span class="input-group-text">€</span>
+          </div>
           <input [ngClass]="{ 'is-invalid': isControlInvalid(cs.amount) }" id="amount" type="number"
             class="form-control" formControlName="amount" placeholder="specify an amount">
         </div>

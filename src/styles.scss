@@ -1,34 +1,23 @@
 @import '~bootstrap/scss/bootstrap';
+@import url("https://cdn.lineicons.com/2.0/LineIcons.css");
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
 
 * {
   font-family: 'Nunito', sans-serif;
 }
 
-html {
-  height: 100vh;
-}
+$or:orange;
 
-button, .button {
-  background-color: #ccc;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  color: black;
-  font-size: 1.2rem;
-  padding: 1rem;
-}
-button:hover {
-  background-color: black;
+.btn-primary {
+  @include button-variant($or, darken($or, 7.5%), darken($or, 10%), lighten($or,5%), lighten($or, 10%), darken($or,30%));
   color: white;
 }
-button:disabled {
-  background-color: #eee;
-  color: #aaa;
-  cursor: auto;
+    
+.btn-outline-primary {
+  @include button-outline-variant($or, #222222, lighten($or,5%), $or);
 }
 
-
-// .card {
-  
-// }
+.top-flat {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

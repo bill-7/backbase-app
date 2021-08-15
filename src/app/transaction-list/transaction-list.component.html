@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card top-flat">
   <div class="card-body">
     <app-filter (inputChange)="updateFilter($event)"></app-filter>
     <div class="list-container">
@@ -6,17 +6,17 @@
       <ul class="list-group" *ngFor="let t of transactions">
         <li *ngIf="shouldDisplayItem(t.merchant.name)" class="item list-group-item">
           <div class="row align-items-center">
-            <div class="col-2">
+            <div class="col-lg-2 col-auto">
               <div class="row align-items-center">
                 <span class="code col px-0 py-3" [ngStyle]="{'background-color': t.categoryCode}">&nbsp;</span>
                 <span class="col">{{dateString(t.dates.valueDate)}}</span>
               </div>
             </div>
-            <div class="col">
+            <div class="col-lg-7 col">
               <span class="mb-0">{{t.merchant.name}}</span><br>
               <span class="transaction-type">{{t.transaction.type}}</span>
             </div>
-            <div class="col text-right">
+            <div class="col-lg-3 col-auto text-right">
               <span [ngClass]="t.transaction.creditDebitIndicator">{{moneyString(t.transaction)}}</span>
             </div>
           </div>
