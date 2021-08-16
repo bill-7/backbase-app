@@ -16,7 +16,6 @@ export class TransactionFormComponent {
   userBalance: number = 5824.76
   submitClicked: boolean = false
   transactionForm: FormGroup = this.emptyTransactionForm()
-  cs = this.transactionForm.controls //TODO remove shorthand
 
   private emptyTransactionForm() {
     return this.formBuilder.group({
@@ -29,7 +28,6 @@ export class TransactionFormComponent {
   private resetForm() {
     this.transactionForm = this.emptyTransactionForm()
     this.submitClicked = false
-    this.cs = this.transactionForm.controls
   }
 
   dismissModal() {
@@ -43,8 +41,9 @@ export class TransactionFormComponent {
   }
 
   onConfirm() {
-    this.userBalance -= this.cs.amount.value
-    this.newTransfer.emit({ 'amount': this.cs.amount.value, 'account': this.cs.toAcc.value })
+    const amount = this.transactionForm.controls.amount.value
+    this.userBalance -= amount
+    this.newTransfer.emit({ 'amount': amount, 'account': this.transactionForm.controls.toAcc.value })
     this.resetForm()
     this.dismissModal()
   }

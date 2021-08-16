@@ -5,12 +5,13 @@
 
 .list-container {
   overflow: auto;
-  height: 68vh;
+  height: 66vh;
 }
 
 .item {
   border-width: 0;
   border-bottom-width: 1px;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar {

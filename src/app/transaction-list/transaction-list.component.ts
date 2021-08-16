@@ -35,7 +35,7 @@ export class TransactionListComponent implements OnInit, OnChanges {
   }
 
   private getData(): Observable<Transaction[]> {
-    const corsProxy = 'https://cors.bridged.cc/' //TODO
+    const corsProxy = 'https://cors.bridged.cc/'
     const url = 'https://r9vdzv10vd.execute-api.eu-central-1.amazonaws.com/dev/transactions'
     return this.http.get<Array<Transaction>>(corsProxy + url).pipe(
       map((data: Transaction[]) => data),

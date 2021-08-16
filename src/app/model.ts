@@ -1,9 +1,9 @@
-export interface Transaction {
-  id: string | null,
-  categoryCode: string,
+export class Transaction {
+  id!: string;
+  categoryCode: string;
   dates: {
     valueDate: string | number
-  },
+  };
   transaction: {
     amountCurrency: {
       amount: number,
@@ -11,10 +11,21 @@ export interface Transaction {
     },
     type: string,
     creditDebitIndicator: string
-  },
+  };
   merchant: {
     name: string,
     accountNumber: string
+  }
+
+  constructor(tAmount?: number, tType?: string, merchantName?: string, date?: number) {
+    this.categoryCode = "#d9bcf5"
+    this.dates = { valueDate: date ? date : 1234 }
+    this.transaction = {
+      amountCurrency: { amount: tAmount || 0, currencyCode: "EUR" },
+      type: tType || "New Transfer",
+      creditDebitIndicator: "DBIT"
+    }
+    this.merchant = { name: merchantName || "Merchant", accountNumber: "" }
   }
 }
 
