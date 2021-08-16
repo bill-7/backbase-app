@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BbUIModule } from 'bb-ui/bb-ui.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
@@ -21,7 +21,6 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpClientJsonpModule,
     NgbModule,
   ],
   providers: [],

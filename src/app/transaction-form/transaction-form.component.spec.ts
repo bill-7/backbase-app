@@ -1,28 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { SubmitButtonComponent } from 'bb-ui/components/submit-button/submit-button.component';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 import { TransactionFormComponent } from './transaction-form.component';
 
 describe('TransactionFormComponent', () => {
   let component: TransactionFormComponent;
-  let component2: ComponentFixture<SubmitButtonComponent>;
-
   let fixture: ComponentFixture<TransactionFormComponent>;
-  let fixture2: ComponentFixture<SubmitButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TransactionFormComponent, SubmitButtonComponent],
+      declarations: [TransactionFormComponent],
       providers: [FormBuilder]
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TransactionFormComponent);
-    fixture2 = TestBed.createComponent(SubmitButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

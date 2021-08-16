@@ -19,7 +19,7 @@ export class Transaction {
 
   constructor(tAmount?: number, tType?: string, merchantName?: string, date?: number) {
     this.categoryCode = "#d9bcf5"
-    this.dates = { valueDate: date ? date : 1234 }
+    this.dates = { valueDate: date || Date.now() }
     this.transaction = {
       amountCurrency: { amount: tAmount || 0, currencyCode: "EUR" },
       type: tType || "New Transfer",
